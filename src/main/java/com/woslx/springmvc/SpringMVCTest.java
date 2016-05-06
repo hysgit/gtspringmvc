@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
 
-    @RequestMapping(value="/testMethod",method = RequestMethod.POST)
+    @RequestMapping(value="/testMethod",method = {RequestMethod.POST, RequestMethod.GET})
     public String testMethod()
     {
         System.out.println("testMethod");

@@ -12,9 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
 
-    @RequestMapping(value="/testMethod",method = {RequestMethod.POST, RequestMethod.GET})
-    public String testMethod()
+    @RequestMapping("/testAntPath/*/abc")
+    public String testAntPath()
     {
+        System.out.println("testAntPath");
+        return "success";
+    }
+
+    @RequestMapping(value="/testParamAndHeaders",
+                    params = {"username", "age!=10"},
+                    headers = {"Accept-Language=zh-CN,zh;q=0.8"})
+    public String testParamAndHeaders()
+    {
+        System.out.println("testParamAndHeaders");
+        return "success";
+    }
+
+    @RequestMapping(value = "/testMethod", method = {RequestMethod.POST, RequestMethod.GET})
+    public String testMethod() {
+
         System.out.println("testMethod");
         return "success";
     }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by hy on 16-5-6.
@@ -12,6 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
+
+    @RequestMapping(value = "/testRequestParam")
+    public String testRequestParm(@RequestParam(value = "username",required = false) String nu,
+                                  @RequestParam(value = "age",required = false) int age) {
+        System.out.println(nu + age);
+        return "success";
+    }
 
     @RequestMapping("/deleted/{id}")
     public String deleted(@PathVariable("id") Integer id) {

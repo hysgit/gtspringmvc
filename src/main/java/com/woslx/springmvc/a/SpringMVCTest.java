@@ -1,10 +1,11 @@
-package com.woslx.springmvc;
+package com.woslx.springmvc.a;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by hy on 16-5-6.
@@ -13,6 +14,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/springmvc")
 public class SpringMVCTest {
+
+    @RequestMapping("/testServletAPI")
+    public String testServletAPI(HttpServletRequest request,
+                                 HttpServletResponse response,
+                                 HttpSession session)
+    {
+        System.out.println(request.getSession().getServletContext());
+        System.out.println(response.getStatus());
+        System.out.println(session.getId());
+        System.out.println("testServletAPI");
+        return "success";
+    }
+
+    @RequestMapping("/testRequestHeader")
+    public String testRequestHeader(@RequestHeader(value = "Accept-Language") String al)
+    {
+        System.out.println("testRequestHeader, "+al);
+        return "success";
+    }
 
     @RequestMapping(value = "/testRequestParam")
     public String testRequestParm(@RequestParam(value = "username",required = false) String nu,
